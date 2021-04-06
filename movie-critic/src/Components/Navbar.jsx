@@ -23,10 +23,10 @@ export default function ButtonAppBar() {
           <Typography variant="h4" className={classes.title}>
             MovieCritic
           </Typography>
-          <HomeIcon fontSize="large" />
-          <SearchIcon fontSize="large" />
-          <MenuIcon fontSize="large" />
-          <PersonIcon fontSize="large" />
+          <HomeIcon onClick={event =>  window.location.href='/'} style={{cursor:'pointer'}} fontSize="large" />
+          <SearchIcon onClick={event =>  window.location.href='/search'} style={{cursor:'pointer'}} fontSize="large" />
+          <MenuIcon onClick={event =>  window.location.href='/list'} style={{cursor:'pointer'}} fontSize="large" />
+          <PersonIcon onClick={event =>  window.location.href='/about'} style={{cursor:'pointer'}} fontSize="large" />
         </Toolbar>
       </AppBar>
     </div>
