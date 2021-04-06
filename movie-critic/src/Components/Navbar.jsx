@@ -18,7 +18,7 @@ export default function ButtonAppBar() {
   const classes = useStyles();
   return (
     <div>
-      <AppBar position="fixed" style={{ backgroundColor: "E84A5F" }}>
+      <AppBar position="fixed" style={{ backgroundColor: '#E84A5F' }}>
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
             MovieCritic
