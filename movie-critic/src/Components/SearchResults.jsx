@@ -45,14 +45,14 @@ export default function SearchResults(props){
         <>
         {results && results.map((result)=>(
             <div key ={result.id} className={classes.root}>
-                <Paper spacing = {0} style={{backgroundColor: '#FECEAB', marginBottom: '15px', height: '200px', padding: '0px'}} >
-                    <Grid item lg xs={12} container spacing ={2} style={{height: '100%'}}>
+                <Paper spacing = {0} style={{backgroundColor: '#FECEAB', marginBottom: '15px', height: '210px', padding: '0px'}} >
+                    <Grid item lg xs={12} container spacing ={0} style={{height: '100%'}}>
                         <Grid item xs={2} style ={{height:'100%'}} container direction="column" justify = 'center' alignItems = 'center'>
                             <div className={classes.resultImageWrapper}>
                                 <img alt="MovieImage" className = {classes.searchResultPic} src = {`https://image.tmdb.org/t/p/w500${result.poster_path}`}/>
                             </div>                           
                         </Grid>
-                        <Grid item xs={7} container style={{height: '100%'}}>
+                        <Grid item xs={7} container style={{height: '100%', paddingTop:'10px',paddingBottom:'10px'}}>
                             <Grid item  container direction="column" > 
                                 <Grid item xs>
                                     <h1 style={{marginTop:0, marginBottom:10}}>{result.title}</h1>
