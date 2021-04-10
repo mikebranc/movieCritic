@@ -3,6 +3,7 @@ import Searchbar from '../Components/Searchbar'
 import SearchResults from '../Components/SearchResults'
 import '../Style.css'
 import { useLocation} from 'react-router-dom'
+import Grid from '@material-ui/core/Grid';
 
 
 export default function Search(){
@@ -26,10 +27,13 @@ export default function Search(){
             <div style={{backgroundColor: '#2A363B'}}>
                 <div style={{width: '100%', backgroundColor: '#E84A5F', height:'60px'}}></div>
                 <div className= 'searchWrapper'>
-                    <Searchbar />
+                        <Searchbar />
                 </div>
             </div>
-            <SearchResults results ={results} />
+            <div style={{backgroundColor: '#2A363B'}}>
+                <SearchResults results ={results} />
+            </div>
+           
         </div>
     )
 }

@@ -11,3 +11,26 @@
 .searchWrapper{
     padding:50px;
 }
+
+.searchResultPic{
+    width:100px;
+    heihgt:100px;
+    margin: auto;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.resultImageWrapper{
+    width: 200;
+    height: 300;
+    background-color: black;
+}
+.searchResultsPaper{
+    margin: auto;
+    max-width: 500;
+}
+.searchResultButton{
+    background-color: '#2A363B'; 
+    color: '#FECEAB';
+}
