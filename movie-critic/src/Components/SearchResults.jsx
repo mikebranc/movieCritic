@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import ButtonBase from '@material-ui/core/ButtonBase';
+//import ButtonBase from '@material-ui/core/ButtonBase';
 import '../Style.css';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -46,22 +46,18 @@ export default function SearchResults(props) {
   const classes = useStyles();
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showDescripModal, setShowDescripModal] = useState(false);
-  const [reviewId, setReviewId] = useState('');
   const { results } = props;
 
-  function openReviewModal(idx) {
-    setReviewId(reviewId);
-    console.log(reviewId);
-    setShowReviewModal(true);
+  function openReviewModal(e, idx) {
+    setShowReviewModal(idx);
   }
 
   function hideReviewModal() {
     setShowReviewModal(false);
   }
 
-  function openDescripModal(idx) {
-    console.log(idx);
-    setShowDescripModal(true);
+  function openDescripModal(e, idx) {
+    setShowDescripModal(idx);
   }
 
   function hideDescripModal() {
@@ -166,34 +162,34 @@ export default function SearchResults(props) {
                       Add to List
                     </Button>
 
-                    <SearchWriteReviewModal
-                      show={showReviewModal}
-                      handleClose={hideReviewModal}
-                    />
-
                     <Button
+                      id={idx}
                       className={classes.resultButton}
-                      onClick={() => {
-                        openReviewModal(idx);
-                      }}
+                      onClick={(e) => openReviewModal(e, idx)}
                     >
                       Write Review
                     </Button>
 
-                    <SearchDescriptionModal
-                      show={showDescripModal}
-                      handleClose={hideDescripModal}
-                      movieSummary={idx}
+                    <SearchWriteReviewModal
+                      id={idx}
+                      show={showReviewModal === idx}
+                      handleClose={hideReviewModal}
                     />
 
                     <Button
+                      id={idx}
                       className={classes.resultButton}
-                      onClick={() => {
-                        openDescripModal(idx);
-                      }}
+                      onClick={(e) => openDescripModal(e, idx)}
                     >
                       Full Description
                     </Button>
+
+                    <SearchDescriptionModal
+                      id={idx}
+                      show={showDescripModal === idx}
+                      handleClose={hideDescripModal}
+                      movieSummary={result.overview}
+                    />
                   </Grid>
                 </Grid>
               </Grid>
