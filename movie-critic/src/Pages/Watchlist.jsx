@@ -13,9 +13,16 @@ export default function Watchlist() {
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           backgroundColor: '#2A363B',
+          position: 'relative',
         }}
       >
-        <div style={{ marginTop: '100px' }}>
+        <div
+          style={{
+            position: 'relative',
+            top: '100px',
+            padding: '0 20px 0 20px',
+          }}
+        >
           <WatchlistCell />
         </div>
       </div>

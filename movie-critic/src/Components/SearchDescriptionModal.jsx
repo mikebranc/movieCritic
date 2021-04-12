@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchDescriptionModal(props) {
-  //debugger;
   const { show, handleClose, movieSummary } = props;
   const classes = useStyles();
 
