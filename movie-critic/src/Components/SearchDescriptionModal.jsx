@@ -17,28 +17,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchDescriptionModal(props) {
-  const movieSummary = props;
+  //debugger;
+  const { show, handleClose, movieSummary } = props;
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
     <div>
-      <Button variant='contained' color='secondary' onClick={handleOpen}>
-        Full Description
-      </Button>
       <Modal
         aria-labelledby='transition-modal-title'
         aria-describedby='transition-modal-description'
         className={classes.modal}
-        open={open}
+        open={show}
         onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -46,10 +35,10 @@ export default function SearchDescriptionModal(props) {
           timeout: 500,
         }}
       >
-        <Fade in={open}>
+        <Fade in={show}>
           <div className={classes.paper}>
             <h1>Description</h1>
-            <p>The description of the movie goes here.</p>
+            {movieSummary}
           </div>
         </Fade>
       </Modal>

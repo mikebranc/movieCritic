@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Modal, Button, Backdrop, Fade, TextField } from '@material-ui/core';
+import React from 'react';
+import { Modal, Backdrop, Fade, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,28 +23,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchWriteReviewModal(props) {
-  const { text } = props;
+  const { show, handleClose } = props;
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
     <div>
-      <Button variant='contained' color='secondary' onClick={handleOpen}>
-        Write Review
-      </Button>
       <Modal
         aria-labelledby='transition-modal-title'
         aria-describedby='transition-modal-description'
         className={classes.modal}
-        open={open}
+        open={show}
         onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -52,7 +40,7 @@ export default function SearchWriteReviewModal(props) {
           timeout: 500,
         }}
       >
-        <Fade in={open}>
+        <Fade in={show}>
           <div className={classes.paper}>
             <h1>Write a Review</h1>
             <form className={classes.root} noValidate autoComplete='off'>
