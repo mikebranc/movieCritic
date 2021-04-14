@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './Fonts/Pinocchio.ttf';
+import './Fonts/Raleway.ttf';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

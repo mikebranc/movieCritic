@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'Pinocchio';
+  src: local('Pinocchio'), url('./Fonts/Pinocchio.ttf') format('truetype');
+  font-weight: normal;
+
+  font-family: 'Raleway';
+  src: local('Raleway'), url('./Fonts/Raleway.ttf') format('truetype');
+  font-weight: normal;
+}

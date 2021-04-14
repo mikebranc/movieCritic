@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   paper: {
+    fontFamily: 'Raleway',
     backgroundColor: '#99B898',
     border: '2px solid #7c947b',
     borderRadius: '5px',
@@ -38,7 +39,9 @@ export default function SearchDescriptionModal(props) {
       >
         <Fade in={show}>
           <div className={classes.paper}>
-            <h1>Description</h1>
+            <h1 style={{ fontFamily: 'Pinocchio', letterSpacing: '1px' }}>
+              Full Description
+            </h1>
             {movieSummary}
           </div>
         </Fade>

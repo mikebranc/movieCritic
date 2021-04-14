@@ -58,7 +58,14 @@ export default function WatchlistCell(props) {
           padding: '5px',
         }}
       >
-        <Grid container direction='row' style={{ padding: '20px' }}>
+        <Grid
+          container
+          direction='row'
+          style={{
+            padding: '20px',
+            fontFamily: 'Pinocchio',
+          }}
+        >
           <Grid container direction='column' xs>
             <Grid item xs>
               Image goes here
@@ -67,20 +74,20 @@ export default function WatchlistCell(props) {
 
           <Grid container direction='column' xs>
             <Grid item xs>
-              Title
+              <div style={{ fontSize: '35px' }}>Title</div>
             </Grid>
             <Grid item xs>
-              Release Date:
+              <div style={{ fontSize: '15px' }}>Release: Date</div>
             </Grid>
           </Grid>
 
           <Grid container direction='row' xs>
             <Grid container direction='column' xs>
               <Grid item xs>
-                User Score:
+                <div style={{ fontSize: '20px' }}>User Score:</div>
               </Grid>
               <Grid item xs>
-                95%
+                <div style={{ fontSize: '40px' }}>95%</div>
               </Grid>
             </Grid>
 
@@ -99,7 +106,7 @@ export default function WatchlistCell(props) {
 
           <Grid container direction='column' xs>
             <Grid item xs>
-              Watched?
+              <div style={{ fontSize: '25px' }}>Watched?</div>
             </Grid>
             <Grid item xs>
               <Checkbox

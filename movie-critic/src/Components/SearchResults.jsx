@@ -19,11 +19,14 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
   resultButton: {
+    fontFamily: 'Raleway',
+    textTransform: 'none',
+    fontWeight: 'bold',
     backgroundColor: '#2A363B',
     color: '#FECEAB',
     fontSize: '20px',
     '&:hover': {
-      backgroundColor: '#3c4d54',
+      backgroundColor: '#1d2529',
     },
   },
   resultImageWrapper: {
@@ -115,21 +118,32 @@ export default function SearchResults(props) {
                 >
                   <Grid item container direction='column'>
                     <Grid item xs>
-                      <h1 style={{ marginTop: 0, marginBottom: 10 }}>
+                      <h1
+                        style={{
+                          marginTop: 0,
+                          marginBottom: 10,
+                          fontFamily: 'Raleway',
+                        }}
+                      >
                         {result.title}
                       </h1>
                     </Grid>
                     <Grid item xs container drection='row'>
                       <Grid item xs>
-                        Average Rating:
+                        <div style={{ fontFamily: 'Raleway' }}>
+                          Average Rating:
+                        </div>
                       </Grid>
                       <Grid item xs>
-                        Friend Rating:
+                        <div style={{ fontFamily: 'Raleway' }}>
+                          Friend Rating:
+                        </div>
                       </Grid>
                     </Grid>
                     <Grid item xs>
                       <div
                         style={{
+                          fontFamily: 'Raleway',
                           height: '50px',
                           width: '700px',
                           overflow: 'hidden',
@@ -140,7 +154,13 @@ export default function SearchResults(props) {
                         {result.overview}
                       </div>
                     </Grid>
-                    <Grid style={{ fontWeight: 'bold', marginTop: 10 }}>
+                    <Grid
+                      style={{
+                        fontFamily: 'Raleway',
+                        fontWeight: 'bold',
+                        marginTop: 10,
+                      }}
+                    >
                       Watched by: BradyMan18, MayaD, and 12 other friends
                     </Grid>
                   </Grid>

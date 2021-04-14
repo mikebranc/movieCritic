@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import { Modal, Backdrop, Fade, TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
-  textField: {
-    width: '50px',
-  },
   submitButton: {
+    fontFamily: 'Raleway',
+    fontWeight: 'bold',
     backgroundColor: '#2A363B',
-    color: 'white',
+    color: '#FECEAB',
     fontSize: '15px',
     textTransform: 'none',
     width: '100%',
     '&:hover': {
-      backgroundColor: '#3c4d54',
+      backgroundColor: '#1d2529',
     },
   },
   modal: {
@@ -32,13 +32,20 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
   root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
     '& > .MuiTextField-root': {
       margin: theme.spacing(1),
       width: '65ch',
+      fontFamily: 'Raleway',
+    },
+    '& > .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#2A363B',
+    },
+    '& > .MuiInputLabel-root': {
+      fontFamily: 'Raleway',
+    },
+    '& > .MuiInputLabel-root.Mui-focused': {
+      color: '#2A363B',
+      fontFamily: 'Raleway',
     },
   },
 }));
@@ -68,9 +75,12 @@ export default function SearchWriteReviewModal(props) {
       >
         <Fade in={show}>
           <div className={classes.paper}>
-            <h1>Write a Review</h1>
+            <h1 style={{ fontFamily: 'Pinocchio', letterSpacing: '1px' }}>
+              Write a Review
+            </h1>
             <form className={classes.root} noValidate autoComplete='off'>
               <TextField
+                className={classes.root}
                 id='outlined-multiline-flexible'
                 label='What did you think?'
                 multiline
