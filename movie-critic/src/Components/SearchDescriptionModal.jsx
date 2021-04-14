@@ -9,8 +9,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    backgroundColor: '#99B898',
+    border: '2px solid #7c947b',
+    borderRadius: '5px',
+    width: '50%',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
