@@ -52,11 +52,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchWriteReviewModal(props) {
   const { show, handleClose } = props;
-  const [value, setValue] = useState('');
+  const [body, setBody] = useState('');
+  const [title, setTitle] = useState('');
   const classes = useStyles();
 
-  function handleChange(event) {
-    setValue(event.target.value);
+  function handleTitle(event) {
+    setTitle(event.target.value);
+  }
+  function handleBody(event) {
+    setBody(event.target.value);
   }
 
   return (
@@ -79,6 +83,16 @@ export default function SearchWriteReviewModal(props) {
               Write a Review
             </h1>
             <form className={classes.root} noValidate autoComplete='off'>
+            <TextField
+                className={classes.root}
+                id='outlined-multiline-flexible'
+                label='Review Name'
+                multiline
+                rowsMax={10}
+                variant='outlined'
+                value={title}
+                onChange={handleTitle}
+              />
               <TextField
                 className={classes.root}
                 id='outlined-multiline-flexible'
@@ -86,8 +100,8 @@ export default function SearchWriteReviewModal(props) {
                 multiline
                 rowsMax={10}
                 variant='outlined'
-                value={value}
-                onChange={handleChange}
+                value={body}
+                onChange={handleBody}
               />
             </form>
             <Button className={classes.submitButton}>Submit</Button>

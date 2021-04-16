@@ -5,6 +5,7 @@ import Search from './Pages/Search';
 import Home from './Pages/Home';
 import SignIn from './Pages/SignIn';
 import Watchlist from './Pages/Watchlist';
+import Review from './Pages/Review'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 
@@ -22,6 +23,10 @@ function App() {
           <Route path='/search'>
             <Navbar/>
             <Search />
+          </Route>
+          <Route path='/review'>
+            <Navbar/>
+
           </Route>
           <Route path='/list'>
             <Watchlist />
