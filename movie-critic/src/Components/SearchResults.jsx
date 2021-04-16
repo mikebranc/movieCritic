@@ -69,7 +69,8 @@ export default function SearchResults(props) {
 
   return (
     <>
-      {results &&
+      {
+      results &&
         results.map((result, idx) => (
           <div key={result.id} className={classes.root}>
             <Paper

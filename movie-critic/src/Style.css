@@ -10,7 +10,12 @@
 }
 
 .searchWrapper {
-  margin: 50px;
+  padding-top:30px;
+  margin: 75px;
+
+}
+body{
+    background-color:#2A363B;
 }
 
 .searchResultPic {

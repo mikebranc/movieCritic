@@ -20,8 +20,8 @@ function App() {
             <Searchbar />
           </Route>
           <Route path='/search'>
+            <Navbar/>
             <Search />
-            <Navbar />
           </Route>
           <Route path='/list'>
             <Watchlist />

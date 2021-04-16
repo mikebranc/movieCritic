@@ -13,6 +13,7 @@ export default function Searchbar() {
     setTitle('');
   }
   return (
+    <div>
     <form onSubmit={handleSubmit}>
       <div style={{ backgroundColor: '2A363B' }}>
         <input
@@ -23,5 +24,6 @@ export default function Searchbar() {
         ></input>
       </div>
     </form>
+    </div>
   );
 }
