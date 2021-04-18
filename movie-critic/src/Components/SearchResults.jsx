@@ -196,7 +196,7 @@ export default function SearchResults(props) {
                       id={idx}
                       show={showReviewModal === idx}
                       handleClose={hideReviewModal}
-                      movieId ={result.id}
+                      movieId ={result.id.toString()}
 
                     />
 
