@@ -49,7 +49,7 @@ export default function SearchResults(props) {
   const classes = useStyles();
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showDescripModal, setShowDescripModal] = useState(false);
-  const { results } = props;
+  const {results} = props;
 
   function openReviewModal(e, idx) {
     setShowReviewModal(idx);
@@ -187,6 +187,7 @@ export default function SearchResults(props) {
                       id={idx}
                       className={classes.resultButton}
                       onClick={(e) => openReviewModal(e, idx)}
+  
                     >
                       Write Review
                     </Button>
@@ -195,6 +196,8 @@ export default function SearchResults(props) {
                       id={idx}
                       show={showReviewModal === idx}
                       handleClose={hideReviewModal}
+                      movieId ={result.id}
+
                     />
 
                     <Button

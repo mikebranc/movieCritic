@@ -3,6 +3,7 @@ import { Modal, Backdrop, Fade, TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
+import { firestore } from '../firebase/firebase.util';
 
 const useStyles = makeStyles((theme) => ({
   submitButton: {
@@ -51,17 +52,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchWriteReviewModal(props) {
-  const { show, handleClose } = props;
+  const { show, handleClose,movieId } = props;
   const [body, setBody] = useState('');
   const [title, setTitle] = useState('');
   const classes = useStyles();
+  const [loading, setLoading] = useState(false)
 
-  function handleTitle(event) {
-    setTitle(event.target.value);
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setLoading(true);
+
+    try {
+      const postRef = firestore.collection("reviews");
+      const data = await postRef.add({ title, body, movieId});
+      console.log(data.id)
+      console.log(data)
+      console.log(movieId)
+    } catch (error) {
+      throw error.message;
+    }
+
+    setTitle("");
+    setBody("");
+    setLoading(false);
+    handleClose();
   }
-  function handleBody(event) {
-    setBody(event.target.value);
-  }
+
 
   return (
     <div>
@@ -82,7 +98,7 @@ export default function SearchWriteReviewModal(props) {
             <h1 style={{ fontFamily: 'Pinocchio', letterSpacing: '1px' }}>
               Write a Review
             </h1>
-            <form className={classes.root} noValidate autoComplete='off'>
+            <form className={classes.root} noValidate autoComplete='off' onSubmit={handleSubmit}>
             <TextField
                 className={classes.root}
                 id='outlined-multiline-flexible'
@@ -91,7 +107,7 @@ export default function SearchWriteReviewModal(props) {
                 rowsMax={10}
                 variant='outlined'
                 value={title}
-                onChange={handleTitle}
+                onChange={(event) => setTitle(event.target.value)}
               />
               <TextField
                 className={classes.root}
@@ -101,10 +117,11 @@ export default function SearchWriteReviewModal(props) {
                 rowsMax={10}
                 variant='outlined'
                 value={body}
-                onChange={handleBody}
+                onChange={(event) => setBody(event.target.value)}
               />
+             <Button className={classes.submitButton} type="submit">Submit</Button>
             </form>
-            <Button className={classes.submitButton}>Submit</Button>
+
           </div>
         </Fade>
       </Modal>
