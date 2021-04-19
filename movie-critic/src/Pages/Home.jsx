@@ -1,6 +1,7 @@
 import React from 'react';
 import '../Style.css';
 import MakeAPost from '../Components/MakeAPost';
+import Post from '../Components/Post';
 
 export default function Home() {
   return (
@@ -23,6 +24,9 @@ export default function Home() {
           }}
         >
           <MakeAPost />
+          <div style={{ paddingTop: '10px' }}>
+            <Post />
+          </div>
         </div>
       </div>
     </div>
