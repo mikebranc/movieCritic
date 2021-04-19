@@ -38,6 +38,11 @@ const useStyles = makeStyles((theme) => ({
       width: '65ch',
       fontFamily: 'Raleway',
     },
+    '& > .MuiInput-root': {
+      margin: theme.spacing(1),
+      width: '65ch',
+      fontFamily: 'Raleway',
+    },
     '& > .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
       borderColor: '#2A363B',
     },
@@ -52,32 +57,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchWriteReviewModal(props) {
-  const { show, handleClose,movieId } = props;
+  const { show, handleClose, movieId } = props;
   const [body, setBody] = useState('');
   const [title, setTitle] = useState('');
   const classes = useStyles();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(event) {
     event.preventDefault();
     setLoading(true);
 
     try {
-      const postRef = firestore.collection("reviews");
-      const data = await postRef.add({ title, body, movieId});
-      console.log(data.id)
-      console.log(data)
-      console.log(movieId)
+      const postRef = firestore.collection('reviews');
+      const data = await postRef.add({ title, body, movieId });
+      console.log(data.id);
+      console.log(data);
+      console.log(movieId);
     } catch (error) {
       throw error.message;
     }
 
-    setTitle("");
-    setBody("");
+    setTitle('');
+    setBody('');
     setLoading(false);
     handleClose();
   }
-
 
   return (
     <div>
@@ -98,20 +102,23 @@ export default function SearchWriteReviewModal(props) {
             <h1 style={{ fontFamily: 'Pinocchio', letterSpacing: '1px' }}>
               Write a Review
             </h1>
-            <form className={classes.root} noValidate autoComplete='off' onSubmit={handleSubmit}>
-            <TextField
+            <form
+              className={classes.root}
+              noValidate
+              autoComplete='off'
+              onSubmit={handleSubmit}
+            >
+              <TextField
                 className={classes.root}
-                id='outlined-multiline-flexible'
-                label='Review Name'
-                multiline
+                id='reviewName'
+                placeholder='Review Name'
                 rowsMax={10}
-                variant='outlined'
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
               />
               <TextField
                 className={classes.root}
-                id='outlined-multiline-flexible'
+                id='thoughts'
                 label='What did you think?'
                 multiline
                 rowsMax={10}
@@ -119,9 +126,10 @@ export default function SearchWriteReviewModal(props) {
                 value={body}
                 onChange={(event) => setBody(event.target.value)}
               />
-             <Button className={classes.submitButton} type="submit">Submit</Button>
+              <Button className={classes.submitButton} type='submit'>
+                Submit
+              </Button>
             </form>
-
           </div>
         </Fade>
       </Modal>
