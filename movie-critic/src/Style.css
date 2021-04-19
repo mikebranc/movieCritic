@@ -40,3 +40,6 @@ body{
   background-color: '#2A363B';
   color: '#FECEAB';
 }
+.movieImgWrapper{
+  height: '100px'
+}
