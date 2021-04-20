@@ -61,22 +61,32 @@ export default function SearchWriteReviewModal(props) {
   const [body, setBody] = useState('');
   const [title, setTitle] = useState('');
   const classes = useStyles();
+  const [rating,setRating]=useState(0);
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(event) {
+
     event.preventDefault();
     setLoading(true);
-
+    setRating(parseFloat(rating))
+    if(rating >10 || rating < 0){
+      alert("Please enter a rating between 1 and 10");
+      return
+    }
+    //parse float not working, have to enter 1-10
+  
+    //setRating(Math.round(parseFloat(rating) * 10) / 10 ) //ensures ratings are always formated to 1 decimal place
     try {
+
       const postRef = firestore.collection('reviews');
-      const data = await postRef.add({ title, body, movieId });
+      const data = await postRef.add({ title, body, movieId, rating});
       console.log(data.id);
       console.log(data);
       console.log(movieId);
     } catch (error) {
       throw error.message;
     }
-
+    setRating('');
     setTitle('');
     setBody('');
     setLoading(false);
@@ -112,9 +122,17 @@ export default function SearchWriteReviewModal(props) {
                 className={classes.root}
                 id='reviewName'
                 placeholder='Review Name'
-                rowsMax={10}
+                rowsMax={2}
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
+              />
+              <TextField
+                className={classes.root}
+                id='rating'
+                placeholder='Rating (1-10)'
+                rowsMax={1}
+                value={rating}
+                onChange={(event) => setRating(event.target.value)}
               />
               <TextField
                 className={classes.root}

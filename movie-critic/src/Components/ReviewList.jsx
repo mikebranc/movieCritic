@@ -47,10 +47,14 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default function ReviewList(){
+export default function ReviewList(props){
+      const {reviews} = props;
       const classes = useStyles();
+      console.log(reviews)
     return(
-    <>
+      <div>
+    {reviews 
+      && reviews.map((review) =>(
     <Paper spacing={0} style={{backgroundColor: '#2A363B', marginBottom: '15px',height: '130px',padding: '0px'}}>
         <Grid item lg xs={12} container spacing={0} style={{ color:'white', height: '100%' }}>
             <Grid item xs={2} style={{ height: '100%' }} container direction='column' justify='center' alignItems='center'>
@@ -58,25 +62,24 @@ export default function ReviewList(){
             </Grid>
             <Grid item xs={8} container style={{ height: '100%', paddingTop: '10px',paddingBottom: '10px', }}>
                 <Grid item container direction='column'>
-                <Grid item xs container drection='row'>
-                    <Grid item xs>
-                    <div className ={classes.reviewHeading}>
-                        Rating: 8.4
-                    </div>
-                    </Grid>
-                    <Grid item xs>
-                    <div className ={classes.reviewHeading}>
-                        Friend Rating: 6.9
-                    </div>
-                    </Grid>
-                </Grid>
-                <Grid item xs={10} >
-                    <p
-                    style={{ fontFamily: 'Raleway'}}>
-                        Lorem ipsum dolor sit amet,unt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                    </p>
-                </Grid>
-                </Grid>
+                  <Grid item xs container drection='row'>
+                      <Grid item container xs={8}>
+                        <div className ={classes.reviewHeading}>
+                            {review.title}
+                        </div>
+                      </Grid>
+                      <Grid item container xs={4}>
+                        <div className ={classes.reviewHeading}>
+                            Rating: {review.rating}
+                        </div>
+                      </Grid>
+                  </Grid>
+                  <Grid item xs>
+                      <p style={{ fontFamily: 'Raleway', color:'white'}}>
+                        {review.body}
+                      </p>
+                  </Grid>
+              </Grid>
             </Grid>
             <Grid item xs={2} container>
                 <Button style={{ textTransform: 'none', backgroundColor: '#E84A5F', color:'white',fontSize:'25px' }}
@@ -91,9 +94,7 @@ export default function ReviewList(){
                 </Button>
             </Grid>
         </Grid>
-    </Paper>
-    </>
+    </Paper>))}
+    </div>
     )
-
-
 }
