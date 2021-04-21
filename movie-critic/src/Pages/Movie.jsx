@@ -56,6 +56,7 @@ export default function Movie(){
     const location = useLocation();
     let movieId = new URLSearchParams(location.search).get('id') 
 
+  
 
     useEffect(()=>{
        setLoading(true)
