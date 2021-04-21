@@ -43,3 +43,13 @@ body{
 .movieImgWrapper{
   height: '100px'
 }
+.userInfo{
+  background-color: '#DFD6CF';
+  outline:'none';
+  border:'none';
+  color:'black';
+  width:'90%';
+  }
+  /* ::placeholder{
+    color: 'white'
+  } */

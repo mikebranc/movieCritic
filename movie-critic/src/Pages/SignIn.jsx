@@ -1,8 +1,28 @@
 import React from 'react';
 import bgPic from '../Images/popcorn.jpeg';
 import '../Style.css';
+//import { makeStyles } from 'material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme)=>({
+  userInfo: {
+    backgroundColor: '#DFD6CF',
+    outline:'none',
+    border:'none',
+    color:'black',
+    width:'90%',
+    height:'90%',
+    '&::placeholder':{
+      color:'black',
+      fontFamily:'raleway',
+      fontSize:'20px',
+      fontWeight:'bold'
+    }
+  }
+}))
 
 export default function SignIn() {
+  const classes = useStyles()
   return (
     <div
       style={{
@@ -23,6 +43,7 @@ export default function SignIn() {
             paddingTop: 200,
             flexDirection: 'column',
             width: '100%',
+          
           }}
         >
           <div
@@ -31,7 +52,9 @@ export default function SignIn() {
               justifyContent: 'center',
               alignItems: 'center',
               width: '60%',
-              fontSize: '200%',
+              fontSize: '50px',
+              fontWeight:'bold',
+              marginBottom:'20px'
             }}
           >
             Movie Critic
@@ -50,7 +73,9 @@ export default function SignIn() {
               cursor: 'pointer',
             }}
           >
-            Username
+            <input
+            className={classes.userInfo} placeholder='Username'
+            ></input>
           </div>
           <div
             style={{
@@ -67,8 +92,8 @@ export default function SignIn() {
               cursor: 'pointer',
             }}
           >
-            Password
-          </div>
+            <input  className={classes.userInfo} placeholder='Password'></input> 
+         </div>
         </div>
       </div>
     </div>
