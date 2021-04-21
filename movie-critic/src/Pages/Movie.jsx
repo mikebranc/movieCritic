@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     width:'20%',
     float: 'left',
     clear:'left',
-    
+
   },
   headingWrapper:{
     marginTop:'10px',
@@ -51,12 +51,12 @@ export default function Movie(){
     const classes = useStyles();
     const [loading, setLoading] = useState(false);
     const [reviews, setReviews] = useState([]);
-    const[movie,setMovie] =useState([]);
+    const[movie, setMovie] = useState([]);
 
     const location = useLocation();
-    let movieId = new URLSearchParams(location.search).get('id') 
+    let movieId = new URLSearchParams(location.search).get('id')
 
-  
+
 
     useEffect(()=>{
        setLoading(true)
@@ -111,7 +111,7 @@ export default function Movie(){
                 <Grid item xs={6}>
                   <h2 className={classes.ratingText}>Rating by Friends: 8.7</h2>
                 </Grid>
-                
+
               </Grid>
             </div>
           </div>
@@ -119,7 +119,7 @@ export default function Movie(){
               <h1>Reviews</h1>
               <ReviewList reviews={reviews}/>
             </div>
-              
+
           </Paper>
         </div>
 

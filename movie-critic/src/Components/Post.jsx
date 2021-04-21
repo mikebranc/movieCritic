@@ -3,6 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
+import { firestore } from '../firebase/firebase.util';
+import Comments from '../Components/Comments';
 
 const useStyles = makeStyles((theme) => ({
   addComment: {
@@ -77,22 +79,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Post() {
+export default function Post(props) {
+  const {reviews} = props;
   const classes = useStyles();
   const [show, setShow] = useState(false);
   const [comment, setComment] = useState('');
+  const [loading, setLoading] = useState(false);
 
   function toggle() {
     setShow(!show);
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    alert(comment);
-    //setComment('');
+    console.log(event.target.dataset.somefield);
+    setLoading(true);
+    try {
+    const postRef = firestore.collection('reviews').doc(event.target.dataset.somefield).collection('comments');
+    const data = await postRef.add({comment});
+  } catch (error) {
+    throw error.message;
   }
+  setComment('');
+  setLoading(false);
+}
+
+
+
+
+
 
   return (
+    <div>
+    {reviews
+      && reviews.map((review) =>(
     <Paper
       spacing={0}
       style={{
@@ -108,7 +128,7 @@ export default function Post() {
 
       <Grid className={classes.post} container direction='column'>
         <Grid item xs>
-          post
+        {review.body}
         </Grid>
       </Grid>
 
@@ -117,25 +137,13 @@ export default function Post() {
           <Grid item xs={10}>
             <div style={{ fontWeight: 'lighter' }}>
               <p style={{ margin: '0' }}>
-                <b>BradyMan18</b> 1917 was really good. I rate it 9/10.
+                <b>BradyMan18</b> {review.title}
               </p>
               {show ? (
                 <div className={classes.moreComments}>
-                  <p style={{ margin: '0' }}>
-                    <b>MikeBranc</b> Sweet, totally gonna watch this movie
-                    tonight.
-                  </p>
-                  <p style={{ margin: '0' }}>
-                    <b>Maya</b> Just watched last week, so great!
-                  </p>
-                  <p style={{ margin: '0' }}>
-                    <b>Jose</b> TBH didn’t love it, just alright
-                  </p>
-                  <p style={{ margin: '0' }}>
-                    <b>BodaciousMan</b> This movie is valid
-                  </p>
+                  <Comments reviewId={review.id}/>
                   {/* <p style={{ margin: '0' }}>{comment}</p> */}
-                  <form onSubmit={handleSubmit}>
+                  <form data-somefield={review.id} onSubmit={handleSubmit}>
                     <input
                       placeholder='Add a Comment'
                       className={classes.addComment}
@@ -157,6 +165,7 @@ export default function Post() {
           </Grid>
         </Grid>
       </Grid>
-    </Paper>
+    </Paper>))}
+    </div>
   );
 }

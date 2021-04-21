@@ -66,7 +66,7 @@ export default function SearchWriteReviewModal(props) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    
+
 
     setLoading(true);
     setRating(parseInt(rating))
@@ -76,18 +76,18 @@ export default function SearchWriteReviewModal(props) {
       return
     }
     //parse float not working, have to enter 1-10
-  
-    //setRating(Math.round(parseFloat(rating) * 10) / 10 ) //ensures ratings are always formated to 1 decimal place
-    // try {
-    //   console.log(typeof rating)
-    //   const postRef = firestore.collection('reviews');
-    //   const data = await postRef.add({ title, body, movieId, rating});
-    //   console.log(data.id);
-    //   console.log(data);
-    //   console.log(movieId);
-    // } catch (error) {
-    //   throw error.message;
-    // }
+
+    setRating(Math.round(parseFloat(rating) * 10) / 10 ) //ensures ratings are always formated to 1 decimal place
+    try {
+      console.log(typeof rating)
+      const postRef = firestore.collection('reviews');
+      const data = await postRef.add({ title, body, movieId, rating});
+      console.log(data.id);
+      console.log(data);
+      console.log(movieId);
+    } catch (error) {
+      throw error.message;
+    }
     setRating('');
     setTitle('');
     setBody('');
