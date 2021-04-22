@@ -1,0 +1,102 @@
+import React from 'react';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import popcorn from '../Images/popcorn.jpeg';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+  },
+  title: {
+    backgroundColor: '#FAF0F0',
+    textAlign: 'center',
+    fontSize: '20px',
+    fontFamily: 'Raleway',
+    fontWeight: 'bold',
+    padding: '10px',
+    borderRadius: '10px 10px 0 0',
+  },
+  block: {
+    backgroundColor: '#2A363B',
+    textAlign: 'left',
+    fontSize: '20px',
+    fontFamily: 'Raleway',
+    margin: '10px',
+    padding: '10px',
+    borderRadius: '10px',
+  },
+  popcornImg: {
+    //This popcorn image should be changed to the movie cover image
+    width: '75px',
+    height: '100px',
+  },
+  blockText: {
+    color: '#FAF0F0',
+    fontWeight: 'bold',
+  },
+  seeMore: {
+    backgroundColor: '#FAF0F0',
+    borderRadius: '15px',
+    width: '50%',
+    padding: '3px',
+    marginTop: '10px',
+    fontWeight: '900',
+    fontFamily: 'Raleway',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: '#E5DADA',
+    },
+  },
+}));
+
+export default function MustWatch() {
+  const classes = useStyles();
+
+  return (
+    <div>
+      <Paper
+        spacing={0}
+        style={{
+          backgroundColor: '#FECEAB',
+          height: '400px',
+          width: '350px',
+          padding: '0px',
+          borderRadius: '10px',
+          overflow: 'auto',
+        }}
+      >
+        <Grid container direction='row'>
+          <Grid className={classes.title} container direction='column'>
+            <Grid item xs>
+              Must Watch
+            </Grid>
+          </Grid>
+
+          <Grid className={classes.block} container direction='row'>
+            <Grid style={{ flexGrow: '0.7' }} item xs>
+              <img className={classes.popcornImg} src={popcorn} alt='popcorn' />
+            </Grid>
+            <Grid className={classes.blockText} direction='column'>
+              <Grid item xs>
+                <div style={{ marginBottom: '5px' }}>The Popcorn Movie</div>
+              </Grid>
+              <Grid item xs>
+                <div style={{ fontSize: '15px' }}>Average Rating: 2</div>
+              </Grid>
+              <Grid item xs>
+                <div style={{ fontSize: '15px' }}>Average Friend Rating: 9</div>
+              </Grid>
+              <Grid item xs>
+                <button className={classes.seeMore}>See More</button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Paper>
+    </div>
+  );
+}

@@ -4,8 +4,9 @@ import Searchbar from './Components/Searchbar';
 import Search from './Pages/Search';
 import Home from './Pages/Home';
 import SignIn from './Pages/SignIn';
+import Profile from './Pages/Profile';
 import Watchlist from './Pages/Watchlist';
-import Movie from './Pages/Movie'
+import Movie from './Pages/Movie';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import ReviewList from './Components/ReviewList';
@@ -19,16 +20,15 @@ function App() {
         <Switch>
           <Route path='/about'>
             <Navbar />
-            <Searchbar />
+            <Profile />
           </Route>
           <Route path='/search'>
-            <Navbar/>
+            <Navbar />
             <Search />
           </Route>
           <Route path='/movie'>
-            <Navbar/>
-            <Movie/>
-
+            <Navbar />
+            <Movie />
           </Route>
           <Route path='/list'>
             <Watchlist />
