@@ -12,6 +12,13 @@ const firebaseConfig = {
   appId: "1:80307267436:web:6d5687491c6511bcb17549"
 };
 
+// const uiConfig = ({
+//   signInSuccessUrl: '/',
+//   signInOptions: [
+//     window.firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+//     window.firebase.auth.EmailAuthProvider.PROVIDER_ID
+//   ],
+// });
 
 firebase.initializeApp(firebaseConfig);
 

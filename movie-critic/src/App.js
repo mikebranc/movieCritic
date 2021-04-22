@@ -8,6 +8,7 @@ import Watchlist from './Pages/Watchlist';
 import Movie from './Pages/Movie'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar';
+import ReviewList from './Components/ReviewList';
 
 function App() {
   return (
