@@ -61,15 +61,17 @@ export default function SearchWriteReviewModal(props) {
   const [body, setBody] = useState('');
   const [title, setTitle] = useState('');
   const classes = useStyles();
-  const [rating,setRating]=useState('');
+  const [rating,setRating]=useState(0);
   const [loading, setLoading] = useState(false);
+
 
   async function handleSubmit(event) {
     event.preventDefault();
 
 
     setLoading(true);
-    setRating(parseInt(rating))
+    console.log('handle submit:')
+    console.log(rating)
     console.log(typeof rating)
     if(rating >10 || rating < 0){
       alert("Please enter a rating between 1 and 10");
@@ -77,18 +79,14 @@ export default function SearchWriteReviewModal(props) {
     }
     //parse float not working, have to enter 1-10
 
-    setRating(Math.round(parseFloat(rating) * 10) / 10 ) //ensures ratings are always formated to 1 decimal place
     try {
       console.log(typeof rating)
       const postRef = firestore.collection('reviews');
-      const data = await postRef.add({ title, body, movieId, rating});
-      console.log(data.id);
-      console.log(data);
-      console.log(movieId);
+      const data = await postRef.add({ title, body, movieId, rating:Number(rating)});
     } catch (error) {
       throw error.message;
     }
-    setRating('');
+    setRating(0);
     setTitle('');
     setBody('');
     setLoading(false);

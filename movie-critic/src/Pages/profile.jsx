@@ -3,7 +3,7 @@ import React from 'react';
 import MustWatch from '../Components/MustWatch';
 import '../Style.css';
 
-export default function Watchlist() {
+export default function Profile() {
   //const [results, setResults] = useState([])
 
   return (
