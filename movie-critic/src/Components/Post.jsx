@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
   comments: {
     backgroundColor: '#FF847C',
     width: '800px',
-    height: '60px',
+    height: '100%',
     borderRadius: '0 0 10px 10px',
     fontFamily: 'Raleway',
     fontWeight: 'bold',
@@ -115,7 +115,6 @@ export default function Post(props) {
     <div>
     {reviews
       && reviews.map((review) =>(
-
     <Paper
       spacing={0}
       style={{
@@ -143,11 +142,9 @@ export default function Post(props) {
               <p style={{ margin: '0' }}>
                 <b>BradyMan18</b> {review.title}
               </p>
-              <div>
               {(show && review.id==showId) ? (
                 <div className={classes.moreComments}>
                   <Comments reviewId={review.id}/>
-                  {/* <p style={{ margin: '0' }}>{comment}</p> */}
                   <form data-somefield={review.id} onSubmit={handleSubmit}>
                     <input
                       placeholder='Add a Comment'
@@ -161,7 +158,6 @@ export default function Post(props) {
                   </form>
                 </div>
               ) : null}
-              </div>
             </div>
           </Grid>
           <Grid item xs={2}>
