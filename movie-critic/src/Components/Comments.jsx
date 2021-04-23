@@ -24,7 +24,6 @@ export default function Comments(props){
             setLoading(false);
           }
         })();
-
       }, [setLoading, setComments]);
 
 

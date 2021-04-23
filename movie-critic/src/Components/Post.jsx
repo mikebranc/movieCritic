@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#FF847C',
     width: '770px',
     position: 'relative',
-    left: '-14px',
+    left: '-15px',
     borderRadius: '0 0 10px 10px',
     fontFamily: 'Raleway',
     fontWeight: 'lighter',
@@ -83,10 +83,12 @@ export default function Post(props) {
   const {reviews} = props;
   const classes = useStyles();
   const [show, setShow] = useState(false);
+  const [showId, setShowId] = useState('');
   const [comment, setComment] = useState('');
   const [loading, setLoading] = useState(false);
 
-  function toggle() {
+  function toggle(id) {
+    setShowId(id);
     setShow(!show);
   }
 
@@ -113,11 +115,13 @@ export default function Post(props) {
     <div>
     {reviews
       && reviews.map((review) =>(
+
     <Paper
       spacing={0}
       style={{
         backgroundColor: '#2A363B',
         padding: '5px',
+        height: 'auto'
       }}
     >
       <Grid className={classes.user} container direction='column'>
@@ -139,7 +143,8 @@ export default function Post(props) {
               <p style={{ margin: '0' }}>
                 <b>BradyMan18</b> {review.title}
               </p>
-              {show ? (
+              <div>
+              {(show && review.id==showId) ? (
                 <div className={classes.moreComments}>
                   <Comments reviewId={review.id}/>
                   {/* <p style={{ margin: '0' }}>{comment}</p> */}
@@ -156,10 +161,11 @@ export default function Post(props) {
                   </form>
                 </div>
               ) : null}
+              </div>
             </div>
           </Grid>
           <Grid item xs={2}>
-            <Button className={classes.commentButton} onClick={toggle}>
+            <Button className={classes.commentButton} onClick={() => toggle(review.id)}>
               Add Comment
             </Button>
           </Grid>
