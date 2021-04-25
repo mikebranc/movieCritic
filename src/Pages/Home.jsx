@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import '../Style.css';
 import MakeAPost from '../Components/MakeAPost';
 import Post from '../Components/Post';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { firestore } from '../firebase/firebase.util';
 import ReviewList from '../Components/ReviewList'
+import {UserContext} from '../UserProvider'
 
 export default function Home() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const user = useContext(UserContext)
+  console.log(user)
   useEffect(() => {
     setLoading(true);
     (async () => {
