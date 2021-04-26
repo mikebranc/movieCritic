@@ -27,7 +27,7 @@ export default function ButtonAppBar() {
             Movie Critic
           </Typography>
           <HomeIcon
-            onClick={(event) => (window.location.href = '/')}
+            onClick={(event) => (window.location.href = '/home')}
             style={{ cursor: 'pointer', color: '#2A363B' }}
             fontSize='large'
           />

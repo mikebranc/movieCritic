@@ -187,7 +187,7 @@ export default function SearchResults(props) {
                       id={idx}
                       className={classes.resultButton}
                       onClick={(e) => openReviewModal(e, idx)}
-  
+
                     >
                       Write Review
                     </Button>

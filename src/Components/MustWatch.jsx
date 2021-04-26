@@ -58,7 +58,7 @@ export default function MustWatch() {
 
   return (
     <div>
-      {/* First create a paper element. All the grids will go inside it. 
+      {/* First create a paper element. All the grids will go inside it.
           In this case it is the yellow box.  */}
       <Paper
         spacing={0}
@@ -71,7 +71,7 @@ export default function MustWatch() {
           overflow: 'auto',
         }}
       >
-        {/* Then I made a Grid with direction column for the Must Watch title. 
+        {/* Then I made a Grid with direction column for the Must Watch title.
             (This is the white box) If you wanna style it you can use 'const useStyles' */}
         <Grid className={classes.title} container direction='column'>
           <Grid item xs>
@@ -79,9 +79,9 @@ export default function MustWatch() {
           </Grid>
         </Grid>
 
-        {/* Then I made another Grid with direction row. This contains all the 
-              stuff in the grey box. I made it a row so the image and text will be 
-              next to eachother. All the text/button I put in a column Grid so they will 
+        {/* Then I made another Grid with direction row. This contains all the
+              stuff in the grey box. I made it a row so the image and text will be
+              next to eachother. All the text/button I put in a column Grid so they will
               one on top of the other.*/}
         <Grid className={classes.block} container direction='row'>
           <Grid style={{ flexGrow: '0.7' }} item xs>

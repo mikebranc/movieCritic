@@ -5,7 +5,8 @@ import '../Style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import { CompassCalibrationOutlined } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
-import {auth, signInWithGoogle} from '../firebase/firebase.util'
+import { Link } from 'react-router-dom';
+import {auth, signUpWithGoogle} from '../firebase/firebase.util'
 
 const useStyles = makeStyles((theme)=>({
   userInfo: {
@@ -39,7 +40,7 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const classes = useStyles()
   const [error, setError] = useState('')
-  
+
   function handleSubmit(event){
     console.log(email)
     console.log(password)
@@ -47,9 +48,8 @@ export default function SignIn() {
     auth.signInWithEmailAndPassword(email, password).catch(error => {
       setError("Error signing in with password and email!");
       console.error("Error signing in with password and email", error);
-    });
+    }).then((error)=>{if(error){window.location.href = '/about'}});
   }
-
   return (
     <div
       style={{
@@ -70,7 +70,7 @@ export default function SignIn() {
             paddingTop: 200,
             flexDirection: 'column',
             width: '100%',
-          
+
           }}
         >
           <div
@@ -120,15 +120,18 @@ export default function SignIn() {
                 cursor: 'pointer',
               }}
             >
-              <input  className={classes.userInfo} placeholder='Password' onChange={(event)=>setPassword(event.target.value)}></input> 
+              <input  className={classes.userInfo} placeholder='Password' onChange={(event)=>setPassword(event.target.value)}></input>
             </div>
             <div style={{display:'flex', alignItems:'center', justifyContent:'center', marginTop:'20px'}}>
               <Button type="submit" onClick={handleSubmit} style={{backgroundColor: '#DFD6CF'}}>Submit</Button>
             </div>
             <div style={{width:'100%'}}>
-              <Button onClick ={signInWithGoogle} style={{width:'100%', backgroundColor:'#99B898',marginTop:'20px'}}>Sign In with Google</Button>
+              <Button onClick ={signUpWithGoogle} style={{width:'100%', backgroundColor:'#99B898',marginTop:'20px'}}>Sign In with Google</Button>
             </div>
-            
+            <p>Don't have an account?{" "}
+              <Link to="/signup">Sign up here</Link>
+              </p>
+
           </form>
 
         </div>

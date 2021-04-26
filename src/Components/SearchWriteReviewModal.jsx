@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Modal, Backdrop, Fade, TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import { firestore } from '../firebase/firebase.util';
+import {UserContext} from '../UserProvider'
 
 const useStyles = makeStyles((theme) => ({
   submitButton: {
@@ -63,6 +64,7 @@ export default function SearchWriteReviewModal(props) {
   const classes = useStyles();
   const [rating,setRating]=useState(0);
   const [loading, setLoading] = useState(false);
+  const user = useContext(UserContext)
 
 
   async function handleSubmit(event) {
@@ -82,7 +84,7 @@ export default function SearchWriteReviewModal(props) {
     try {
       console.log(typeof rating)
       const postRef = firestore.collection('reviews');
-      const data = await postRef.add({ title, body, movieId, rating:Number(rating)});
+      const data = await postRef.add({ title, body, movieId, rating:Number(rating), user});
     } catch (error) {
       throw error.message;
     }

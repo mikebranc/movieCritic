@@ -17,7 +17,7 @@ export default function Home() {
     (async () => {
       try {
         const postsRef = firestore.collection("reviews");
-        const postsDoc = await postsRef.where("movieId", "==", "808").get();
+        const postsDoc = await postsRef.get();
         const data = postsDoc.docs.map((item) => ({
           id: item.id,
           ...item.data(),

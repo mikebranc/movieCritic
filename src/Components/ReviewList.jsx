@@ -53,7 +53,7 @@ export default function ReviewList(props){
       console.log(reviews)
     return(
       <div>
-    {reviews 
+    {reviews
       && reviews.map((review) =>(
     <Paper spacing={0} style={{backgroundColor: '#2A363B', marginBottom: '15px',height: '130px',padding: '0px'}}>
         <Grid item lg xs={12} container spacing={0} style={{ color:'white', height: '100%' }}>

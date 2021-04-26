@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { firestore } from '../firebase/firebase.util';
 import { makeStyles } from '@material-ui/core/styles';
+import {UserContext} from '../UserProvider'
 
 export default function Comments(props){
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(false);
-
+    const user = useContext(UserContext)
     const {reviewId} = props;
 
     useEffect(() => {
@@ -26,13 +27,12 @@ export default function Comments(props){
         })();
       }, [setLoading, setComments]);
 
-
     return(
         <div>
                   {comments
                       && comments.map((comment) =>(
                             <p style={{ margin: '0' }}>
-                              <b>BodaciousMan</b> {comment.comment}
+                              <b>{comment.user.username}</b> {comment.comment}
                           </p>
                   ))}
                   </div>

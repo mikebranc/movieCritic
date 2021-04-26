@@ -4,8 +4,9 @@ import '../Style.css';
 //import { makeStyles } from 'material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles';
 import { CompassCalibrationOutlined } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
-import {auth, signInWithGoogle, generateUserDocument} from '../firebase/firebase.util'
+import {auth, generateUserDocument, signUpWithGoogle} from '../firebase/firebase.util'
 
 const useStyles = makeStyles((theme)=>({
   userInfo: {
@@ -40,7 +41,7 @@ export default function SignUp() {
   const classes = useStyles()
   const [error, setError] = useState('')
   const [username, setUsername] = useState('')
-  
+
   async function handleSubmit(event){
     console.log(email)
     console.log(username)
@@ -49,11 +50,12 @@ export default function SignUp() {
     try{
         const {user} = await auth.createUserWithEmailAndPassword(email, password);
         generateUserDocument(user, { email, username});
+        window.location.href = '/about'
       }
       catch(error){
         setError('Error Signing up with email and password');
       }
-  
+
       setEmail("");
       setPassword("");
       setUsername("");
@@ -79,7 +81,7 @@ export default function SignUp() {
             paddingTop: 200,
             flexDirection: 'column',
             width: '100%',
-          
+
           }}
         >
           <div
@@ -129,7 +131,7 @@ export default function SignUp() {
                 cursor: 'pointer',
               }}
             >
-              <input  className={classes.userInfo} placeholder='Username' onChange={(event)=>setUsername(event.target.value)}></input> 
+              <input  className={classes.userInfo} placeholder='Username' onChange={(event)=>setUsername(event.target.value)}></input>
             </div>
             <div
               style={{
@@ -146,15 +148,17 @@ export default function SignUp() {
                 cursor: 'pointer',
               }}
             >
-              <input  className={classes.userInfo} placeholder='Password' onChange={(event)=>setPassword(event.target.value)}></input> 
+              <input  className={classes.userInfo} placeholder='Password' onChange={(event)=>setPassword(event.target.value)}></input>
             </div>
             <div style={{display:'flex', alignItems:'center', justifyContent:'center', marginTop:'20px'}}>
               <Button type="submit" onClick={handleSubmit} style={{backgroundColor: '#DFD6CF'}}>Submit</Button>
             </div>
             <div style={{width:'100%'}}>
-              <Button onClick ={signInWithGoogle} style={{width:'100%', backgroundColor:'#99B898',marginTop:'20px'}}>Sign Up with Google</Button>
+              <Button onClick ={signUpWithGoogle} style={{width:'100%', backgroundColor:'#99B898',marginTop:'20px'}}>Sign Up with Google</Button>
             </div>
-            
+            <p>Already have an account?{" "}
+              <Link to="/">Sign in here</Link>
+              </p>
           </form>
 
         </div>

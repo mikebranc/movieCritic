@@ -5,7 +5,7 @@ import '../Style.css'
 import { useLocation} from 'react-router-dom'
 import Grid from '@material-ui/core/Grid';
 import Navbar from '../Components/Navbar'
- 
+
 
 
 export default function Search(){
@@ -24,6 +24,18 @@ export default function Search(){
         })
     }, [setLoading, setResults])
 
+    if(!query){
+        return(
+            <div style={{backgroundColor:'#2A363B'}}>
+                <div className= 'searchWrapper'>
+                    <Searchbar/>
+                </div>
+
+
+            </div>
+        )
+    }
+
     return(
         <div style={{backgroundColor:'#2A363B'}}>
             <div className= 'searchWrapper'>
@@ -33,7 +45,7 @@ export default function Search(){
                 </div>
             </div>
 
-           
+
         </div>
     )
 }

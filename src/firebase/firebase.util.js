@@ -16,9 +16,27 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const provider = new firebase.auth.GoogleAuthProvider();
-export const signInWithGoogle = () => {
-  auth.signInWithPopup(provider);
+// export const signInWithGoogle = () => {
+//   auth.signInWithPopup(provider).then(()=>{window.location.href = '/about'});
+// };
+
+export const signUpWithGoogle = async () => {
+  const {user} = auth.signInWithPopup(provider).then( async (result) => {
+    let user = result.user;
+    let username = result.user.displayName;
+    let email = result.user.email;
+    const userRef = firestore.doc(`users/${user.uid}`);
+    if(result.additionalUserInfo.isNewUser){
+      const data = await userRef.set({email, username});
+    }
+  }).catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    var email = error.email;
+    var credential = error.credential;
+  }).then(()=>{window.location.href = '/about'});
 };
+
 
 export const generateUserDocument = async (user, additionalData) => {
   if (!user) return;

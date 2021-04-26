@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import { firestore } from '../firebase/firebase.util';
 import Comments from '../Components/Comments';
+import {UserContext} from '../UserProvider'
 
 const useStyles = makeStyles((theme) => ({
   addComment: {
@@ -86,7 +87,7 @@ export default function Post(props) {
   const [showId, setShowId] = useState('');
   const [comment, setComment] = useState('');
   const [loading, setLoading] = useState(false);
-
+  const user = useContext(UserContext)
   function toggle(id) {
     setShowId(id);
     setShow(!show);
@@ -98,7 +99,7 @@ export default function Post(props) {
     setLoading(true);
     try {
     const postRef = firestore.collection('reviews').doc(event.target.dataset.somefield).collection('comments');
-    const data = await postRef.add({comment});
+    const data = await postRef.add({comment, user });
   } catch (error) {
     throw error.message;
   }
@@ -125,7 +126,7 @@ export default function Post(props) {
     >
       <Grid className={classes.user} container direction='column'>
         <Grid item xs>
-          BradyMan18
+          {review.user.username}
         </Grid>
       </Grid>
 
@@ -140,7 +141,7 @@ export default function Post(props) {
           <Grid item xs={10}>
             <div style={{ fontWeight: 'lighter' }}>
               <p style={{ margin: '0' }}>
-                <b>BradyMan18</b> {review.title}
+                <b>{review.user.username}</b> {review.title}
               </p>
               {(show && review.id==showId) ? (
                 <div className={classes.moreComments}>

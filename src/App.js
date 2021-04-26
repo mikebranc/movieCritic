@@ -38,12 +38,12 @@ function App() {
               <Watchlist />
               <Navbar />
             </Route>
-            <Route path='/signin'>
-              <SignIn />
-            </Route>
-            <Route path='/'>
+            <Route path='/home'>
               <Home />
               <Navbar />
+            </Route>
+            <Route path='/'>
+              <SignIn />
             </Route>
           </Switch>
         </>

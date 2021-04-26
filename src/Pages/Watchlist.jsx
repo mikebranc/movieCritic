@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import WatchlistCell from '../Components/WatchlistCell';
+import {UserContext} from '../UserProvider'
 import '../Style.css';
 
 export default function Watchlist() {
   //const [results, setResults] = useState([])
-
+  const user = useContext(UserContext)
+  console.log(user)
   return (
     <div>
       <div
