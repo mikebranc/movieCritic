@@ -69,7 +69,7 @@ export default function MustWatch() {
       {/* First create a paper element. All the grids will go inside it.
           In this case it is the yellow box.  */}
       <Paper
-        spacing={0}
+        spacing={3}
         style={{
           backgroundColor: "#FECEAB",
           height: "200px",
