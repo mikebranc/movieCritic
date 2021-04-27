@@ -45,7 +45,7 @@ export default function MustWatch() {
   return (
     <div>
       <Paper
-        spacing={3}
+        spacing={0}
         style={{
           backgroundColor: "#99B898",
           height: "200px",
