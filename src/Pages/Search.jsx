@@ -8,6 +8,7 @@ import Navbar from '../Components/Navbar'
 
 
 
+
 export default function Search(){
     const [loading, setLoading] = useState(false)
     const [results, setResults] = useState([])

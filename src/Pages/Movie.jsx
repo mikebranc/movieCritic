@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
+
 const useStyles = makeStyles((theme) => ({
   searchResultPic: {
     width: '100%',
@@ -52,14 +53,14 @@ export default function Movie(){
     const [loading, setLoading] = useState(false);
     const [reviews, setReviews] = useState([]);
     const[movie, setMovie] = useState([]);
+   
 
     const location = useLocation();
     let movieId = new URLSearchParams(location.search).get('id')
 
 
-
     useEffect(()=>{
-       setLoading(true)
+      setLoading(true)
       fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=436a07c5838058f745a532d6f8cbc1d6`)
       .then(response => response.json())
       .then((data)=>{
@@ -88,10 +89,11 @@ export default function Movie(){
 
       }, [setLoading, setReviews]);
 
-      if (loading || (reviews.length === 0 && reviews)) {
+      if (loading) {
         return <CircularProgress />;
 
       }
+      console.log(reviews);
     return(
         <>
         <div style={{width:'100%'}}>
@@ -117,7 +119,7 @@ export default function Movie(){
           </div>
             <div>
               <h1>Reviews</h1>
-              <ReviewList reviews={reviews}/>
+              {reviews.length>0 ? <ReviewList reviews={reviews}/> : <p>no reviews</p>}
             </div>
 
           </Paper>
