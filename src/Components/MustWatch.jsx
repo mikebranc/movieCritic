@@ -72,7 +72,7 @@ export default function MustWatch() {
         spacing={3}
         style={{
           backgroundColor: "#FECEAB",
-          height: "200px",
+          height: "400px",
           width: "300px",
           padding: "0px",
           borderRadius: "10px",
