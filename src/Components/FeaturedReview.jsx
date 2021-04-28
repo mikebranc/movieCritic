@@ -73,7 +73,7 @@ export default function MustWatch() {
         style={{
           backgroundColor: "#E84A5F",
           height: "200px",
-          width: "300px",
+          width: "375px",
           padding: "0px",
           borderRadius: "10px",
           overflow: "hidden",

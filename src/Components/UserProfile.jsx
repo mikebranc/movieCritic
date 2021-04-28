@@ -49,7 +49,7 @@ export default function MustWatch() {
         style={{
           backgroundColor: "#99B898",
           height: "200px",
-          width: "450px",
+          width: "750px",
           padding: "0px",
           borderRadius: "10px",
           overflow: "hidden",
@@ -57,14 +57,15 @@ export default function MustWatch() {
       >
         <Grid className={classes.title}>
           <Grid item xs>
-            Bio
+            Profile
           </Grid>
         </Grid>
         <Grid classname={classes.blockText}>
           <Grid Item xs>
-            <div style={{ fontSize: "20px" }}>- The Popcorn Movie</div>
-            <div style={{ fontSize: "20px" }}>- Homeboy from SoCal</div>
-            <div style={{ fontSize: "20px" }}>- Favorite Sport is Bball</div>
+            <div style={{ fontSize: "20px" }}>- profile pic</div>
+            <div style={{ fontSize: "20px" }}>
+              - posts, followers, following
+            </div>
           </Grid>
         </Grid>
       </Paper>
