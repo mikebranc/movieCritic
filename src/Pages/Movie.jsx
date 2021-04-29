@@ -124,7 +124,6 @@ export default function Movie(){
               <h1>Reviews</h1>
               {reviews.length>0 ? <ReviewList reviews={reviews}/> : <p>no reviews</p>}
             </div>
-
           </Paper>
         </div>
 

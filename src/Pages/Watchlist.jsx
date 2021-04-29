@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react';
-import WatchlistCell from '../Components/WatchlistCell';
+import WatchlistCellWrapper from '../Components/WatchlistCellWrapper';
 import {UserContext} from '../UserProvider'
 import '../Style.css';
 import { firestore } from '../firebase/firebase.util';
@@ -13,7 +13,7 @@ export default function Watchlist() {
     setLoading(true);
     (async () => {
       try{
-        const postRef = await firestore.collection("users").doc(user.uid).collection("movies")
+        const postRef = firestore.collection("users").doc(user.uid).collection("movies")
         const postDoc = await postRef.get()
         console.log(user.uid)
         console.log("postRef")
@@ -67,7 +67,7 @@ if(loading){
             padding: '0 20px 0 20px',
           }}
         >
-          {movies?<WatchlistCell results={movies} />: <p>No movies in your list</p>}
+          {movies?<WatchlistCellWrapper results={movies} />: <p>No movies in your list</p>}
         </div>
       </div>
     </div>
