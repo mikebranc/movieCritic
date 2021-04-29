@@ -45,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '50px',
     fontWeight: 'bold',
     marginBottom:'0px',
+  },
+  reviewWrapper:{
+    paddingLeft:'30px'
   }
 }))
 
@@ -117,7 +120,7 @@ export default function Movie(){
               </Grid>
             </div>
           </div>
-            <div>
+            <div className={classes.reviewWrapper}>
               <h1>Reviews</h1>
               {reviews.length>0 ? <ReviewList reviews={reviews}/> : <p>no reviews</p>}
             </div>

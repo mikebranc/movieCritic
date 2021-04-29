@@ -81,9 +81,20 @@ export default function SearchResults(props) {
     //then we'll add the new movie to that list and then after that upload the list to the db
     //see here https://stackoverflow.com/questions/46757614/how-to-update-an-array-of-objects-with-firestore 
     const postRef = firestore.collection('users').doc(user.uid);
-    const data = await postRef.update({movies:firestore.FieldValue.arrayUnion(movieId)});
+    console.log(user)
+    let data = null
+    if(user.movies){
+      let movieList = user.movies
+      movieList.push(movieId.toString())
+      data = await postRef.update({movies:movieList});
+    }
+    else{
+      data = await postRef.update({movies:[movieId]})
+    }
+    
     console.log("added")
     console.log(data)
+    console.log(user.uid)
   } catch (error) {
     throw error.message;
   }
