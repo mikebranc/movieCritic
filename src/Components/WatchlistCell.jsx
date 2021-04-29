@@ -108,10 +108,10 @@ export default function WatchlistCell(props){
               <Grid container direction='row' xs>
                 <Grid container direction='column' xs>
                   <Grid item xs>
-                    <div style={{ fontSize: '20px' }}>User Score:</div>
+                    <div style={{ fontSize: '20px', width:'50%' }}>Average Rating:</div>
                   </Grid>
                   <Grid item xs>
-                    <div style={{ fontSize: '40px' }}>95%</div>
+                    <div style={{ fontSize: '40px' }}>{movie.vote_average}</div>
                   </Grid>
                 </Grid>
     
