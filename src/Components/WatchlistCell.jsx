@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -43,13 +43,32 @@ export default function WatchlistCell(props) {
   const { results } = props;
   const classes = useStyles();
   const [watched, setWatched] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [movies, setMovie] = useState()
 
   function checkboxChange(e) {
     setWatched(e.target.watched);
+    //update firebase
   }
 
+  console.log(results)
+  function getMovie(movieId){
+    setLoading(true)
+    fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=436a07c5838058f745a532d6f8cbc1d6`)
+    .then(response => response.json())
+    .then((data)=>{
+        setLoading(false)
+        return data
+      })
+    }
+    // let currentMovie = getMovie(result)
+    // console.log(currentMovie)
+    console.log(results)
   return (
-    <div>
+    <>
+    {/* {results && results.map((result)=> */}
+      (
+      <div>
       <Paper
         spacing={0}
         style={{
@@ -122,5 +141,7 @@ export default function WatchlistCell(props) {
         </Grid>
       </Paper>
     </div>
+    ))
+  </>
   );
 }

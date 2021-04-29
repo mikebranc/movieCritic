@@ -80,17 +80,20 @@ export default function SearchResults(props) {
     //so what we'll probably have to do is get an array of existing movies from the db
     //then we'll add the new movie to that list and then after that upload the list to the db
     //see here https://stackoverflow.com/questions/46757614/how-to-update-an-array-of-objects-with-firestore 
-    const postRef = firestore.collection('users').doc(user.uid);
+    //const postRef = firestore.collection('users').doc(user.uid);
+    movieId = movieId.toString()
+    const postRef = firestore.collection('users').doc(user.uid).collection('movies').doc(movieId);
+    const data = await postRef.set({watched:false });
     console.log(user)
-    let data = null
-    if(user.movies){
-      let movieList = user.movies
-      movieList.push(movieId.toString())
-      data = await postRef.update({movies:movieList});
-    }
-    else{
-      data = await postRef.update({movies:[movieId]})
-    }
+    // if(user.movies){
+    //   let movieList = user.movies
+    //   movieList.push(movieId.toString())
+    //   data = await postRef.update({movies:movieList});
+    // }
+    // else{
+    //   movieId = movieId.toString()
+    //   data = await postRef.update({movies:[movieId]})
+    // }
     
     console.log("added")
     console.log(data)
