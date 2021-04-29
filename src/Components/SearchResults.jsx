@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 //import ButtonBase from '@material-ui/core/ButtonBase';
@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchWriteReviewModal from './SearchWriteReviewModal';
 import SearchDescriptionModal from './SearchDescriptionModal';
+import {UserContext} from '../UserProvider';
+import { firestore } from '../firebase/firebase.util';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,6 +52,9 @@ export default function SearchResults(props) {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showDescripModal, setShowDescripModal] = useState(false);
   const {results} = props;
+  const [loading, setLoading] = useState(false);
+  const user = useContext(UserContext)
+  console.log(user)
 
   function openReviewModal(e, idx) {
     setShowReviewModal(idx);
@@ -66,6 +71,39 @@ export default function SearchResults(props) {
   function hideDescripModal() {
     setShowDescripModal(false);
   }
+  function handleMovie(movieId){
+    window.location.href = `/movie?id=${movieId}`
+  }
+  async function handleList(movieId){
+    setLoading(true);
+    try {
+    //so what we'll probably have to do is get an array of existing movies from the db
+    //then we'll add the new movie to that list and then after that upload the list to the db
+    //see here https://stackoverflow.com/questions/46757614/how-to-update-an-array-of-objects-with-firestore 
+    //const postRef = firestore.collection('users').doc(user.uid);
+    movieId = movieId.toString()
+    const postRef = firestore.collection('users').doc(user.uid).collection('movies').doc(movieId);
+    const data = await postRef.set({watched:false });
+    console.log(user)
+    // if(user.movies){
+    //   let movieList = user.movies
+    //   movieList.push(movieId.toString())
+    //   data = await postRef.update({movies:movieList});
+    // }
+    // else{
+    //   movieId = movieId.toString()
+    //   data = await postRef.update({movies:[movieId]})
+    // }
+    
+    console.log("added")
+    console.log(data)
+    console.log(user.uid)
+  } catch (error) {
+    throw error.message;
+  }
+  setLoading(false);
+  }
+
 
   return (
     <>
@@ -179,7 +217,7 @@ export default function SearchResults(props) {
                     alignItems='stretch'
                     justify='space-between'
                   >
-                    <Button className={classes.resultButton}>
+                    <Button className={classes.resultButton} onClick={(e) => handleList(result.id)}>
                       Add to List
                     </Button>
 
@@ -203,7 +241,7 @@ export default function SearchResults(props) {
                     <Button
                       id={idx}
                       className={classes.resultButton}
-                      onClick={(e) => openDescripModal(e, idx)}
+                      onClick={(e) => handleMovie(result.id)}
                     >
                       Full Description
                     </Button>

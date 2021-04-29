@@ -148,7 +148,7 @@ export default function SignUp() {
                 cursor: 'pointer',
               }}
             >
-              <input  className={classes.userInfo} placeholder='Password' onChange={(event)=>setPassword(event.target.value)}></input>
+              <input  type="password" className={classes.userInfo} placeholder='Password' onChange={(event)=>setPassword(event.target.value)}></input>
             </div>
             <div style={{display:'flex', alignItems:'center', justifyContent:'center', marginTop:'20px'}}>
               <Button type="submit" onClick={handleSubmit} style={{backgroundColor: '#DFD6CF'}}>Submit</Button>
