@@ -44,29 +44,54 @@ export default function WatchlistCell(props) {
   const classes = useStyles();
   const [watched, setWatched] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [movies, setMovie] = useState()
+  const [movies, setMovies] = useState([])
 
   function checkboxChange(e) {
     setWatched(e.target.watched);
     //update firebase
   }
 
-  console.log(results)
-  function getMovie(movieId){
-    setLoading(true)
-    fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=436a07c5838058f745a532d6f8cbc1d6`)
-    .then(response => response.json())
-    .then((data)=>{
+  //console.log(results)
+
+
+  useEffect(()=>{
+    async function getMovies(){
+      setLoading(true)
+      let movieList = []
+      try{
+        results.map((result)=>
+        fetch(`https://api.themoviedb.org/3/movie/${result.id}?api_key=436a07c5838058f745a532d6f8cbc1d6`)
+        .then(response => response.json())
+        .then((data)=>{
+          console.log("data:" , data)
+     
+          movieList.push(data)
+          setMovies(movieList)
+          console.log("movies:" , movies)
+        })
+      )
+      setLoading(false)
+      }
+      catch(error){
         setLoading(false)
-        return data
-      })
+      }
+   
     }
-    // let currentMovie = getMovie(result)
-    // console.log(currentMovie)
-    console.log(results)
+    getMovies()
+  }, [setMovies, setLoading, results, movies])
+  //console.log(movies)
+
+  if(loading){
+    return(
+      <h1>Waiting on your results my good sir</h1>
+    )
+  }
+
   return (
     <>
-    {/* {results && results.map((result)=> */}
+    {movies && movies.map((movie)=>{
+
+  
       (
       <div>
       <Paper
@@ -141,7 +166,7 @@ export default function WatchlistCell(props) {
         </Grid>
       </Paper>
     </div>
-    ))
+    )})}
   </>
   );
 }

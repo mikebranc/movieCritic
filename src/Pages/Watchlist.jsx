@@ -13,30 +13,41 @@ export default function Watchlist() {
     setLoading(true);
     (async () => {
       try{
-        const postRef = firestore.collection("users").doc(user.uid).collection("movies")
+        const postRef = await firestore.collection("users").doc(user.uid).collection("movies")
         const postDoc = await postRef.get()
-        const data = postDoc.docs.map((doc)=>({
-          id: doc.id,
-          ...doc.data()
-        }
-        ))
+        console.log(user.uid)
+        console.log("postRef")
+        console.log(postRef)
+        console.log("postDoc")
+        console.log(postDoc)
+        const data = postDoc.docs.map((item)=>({
+          id: item.id,
+          ...item.data()
+        }));
         console.log(data)
         setMovies(data);
         setLoading(false);
       }
       catch(error){
-        console.log("errr")
+        console.log(error)
+        console.log(user)
         setLoading(false);
       }
     })();
 
-  }, [setLoading, setMovies]);
+  }, [setLoading, user,setMovies]);
   console.log(movies)
 
   // function getMovie(info){
 
   // }
-
+if(loading){
+  return(
+    <div>
+    <h1>loading</h1>
+    </div>
+  )
+}
 
   return (
     <div>
