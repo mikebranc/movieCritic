@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { UserContext } from "../UserProvider";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import popcorn from '../Images/popcorn.jpeg';
+import { auth } from "../firebase/firebase.util";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MustWatch() {
   const classes = useStyles();
+  const user = useContext(UserContext);
 
   return (
     <div>
@@ -82,20 +85,25 @@ export default function MustWatch() {
                 <img className={classes.userImg} src={popcorn} alt='popcorn' />
               </div>
               <div>
-                <button className={classes.editProfile}>Edit Profile</button>
-              </div>
+                <button className={classes.editProfile}
+                  onClick={() => {
+                  auth.signOut();
+                  window.location.href = "/signin";
+                  }}
+                   >Sign out</button>
+      </div>
             </div>
           </Grid>
           <Grid item xs={6} className={classes.blockText}>
-            <div
+            {user ?<div
               style={{
                 fontSize: '30px',
                 fontWeight: 'bold',
                 padding: '10px',
               }}
             >
-              @PopcornPerson
-            </div>
+              @{user.username}
+            </div>: <div></div>}
             <div
               style={{
                 display: 'flex',

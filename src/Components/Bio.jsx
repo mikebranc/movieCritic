@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { UserContext } from "../UserProvider";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -41,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MustWatch() {
   const classes = useStyles();
-
+  const user = useContext(UserContext);
   return (
     <div>
       <Paper
@@ -63,9 +64,7 @@ export default function MustWatch() {
         <Grid classname={classes.blockText}>
           <Grid Item xs>
             <div style={{ padding: '20px' }}>
-              <div style={{ fontSize: '20px' }}>- The Popcorn Movie</div>
-              <div style={{ fontSize: '20px' }}>- Homeboy from SoCal</div>
-              <div style={{ fontSize: '20px' }}>- Favorite Sport is Bball</div>
+              {user? <div style={{ fontSize: '20px' }}>{user.bio}</div>: <div>tell us about yourself</div>}
             </div>
           </Grid>
         </Grid>

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { UserContext } from "../UserProvider";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import popcorn from '../Images/popcorn.jpeg';
 import cup from '../Images/cup.png';
+import ReviewProfile from './ReviewProfile'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,11 +69,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MustWatch() {
+export default function MustWatch(props) {
+  const {reviews} = props;
   const classes = useStyles();
-
+  const user = useContext(UserContext);
   return (
-    <div>
+    <>
       <Paper
         spacing={3}
         style={{
@@ -88,21 +91,7 @@ export default function MustWatch() {
             Reviews
           </Grid>
         </Grid>
-
-        <Grid className={classes.block} container direction='row'>
-          <Grid style={{ flexGrow: '0.7' }} item xs>
-            <img className={classes.popcornImg} src={popcorn} alt='popcorn' />
-          </Grid>
-
-          <Grid className={classes.blockText}>
-            <Grid item xs>
-              <p style={{ margin: '0px' }}>
-                This movie boasts groundbreaking direction, cinematography,
-                screenwriting, soundtrack, and extraordinary perfor...
-              </p>
-            </Grid>
-          </Grid>
-
+        <ReviewProfile reviews={reviews}/>
           <Grid item xs>
             <div
               style={{
@@ -113,15 +102,11 @@ export default function MustWatch() {
               }}
             >
               <div>
-                <img className={classes.cupImg} src={cup} alt='cup' />
-              </div>
-              <div>
                 <button className={classes.seeMore}>See More</button>
               </div>
             </div>
           </Grid>
-        </Grid>
       </Paper>
-    </div>
+    </>
   );
 }

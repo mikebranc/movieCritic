@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { UserContext } from "../UserProvider";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -52,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MustWatch() {
   const classes = useStyles();
+  const user = useContext(UserContext);
 
   return (
     <div>

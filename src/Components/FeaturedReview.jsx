@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { UserContext } from "../UserProvider";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -49,9 +50,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MustWatch() {
+export default function MustWatch(props) {
+  const {featuredReview} = props;
   const classes = useStyles();
-
+  const user = useContext(UserContext);
+  console.log(featuredReview)
   return (
     <div>
       {/* First create a paper element. All the grids will go inside it.
@@ -77,7 +80,7 @@ export default function MustWatch() {
 
         <Grid className={classes.blockText}>
           <Grid item xs>
-            <div style={{ fontSize: '20px' }}>Some review goes here</div>
+            <div style={{ fontSize: '20px' }}>{featuredReview.body}</div>
           </Grid>
           <Grid item xs>
             <button className={classes.seeMore}>See More</button>

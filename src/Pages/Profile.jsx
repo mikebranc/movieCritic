@@ -1,5 +1,5 @@
 // change watchlistcell everywhere on here
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../UserProvider";
 import { auth } from "../firebase/firebase.util";
 import MustWatch from "../Components/MustWatch";
@@ -8,12 +8,40 @@ import FeaturedReview from "../Components/FeaturedReview";
 import Reviews from "../Components/Reviews";
 import FavMovie from "../Components/FavMovie";
 import UserProfile from "../Components/UserProfile";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { firestore } from '../firebase/firebase.util';
 import "../Style.css";
 
 export default function Profile() {
   //const [results, setResults] = useState([])
   const user = useContext(UserContext);
   //const {email, username} = user;
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    (async () => {
+      try {
+        const postsRef = firestore.collection("reviews");
+        const postsDoc = await postsRef.get();
+        const data = postsDoc.docs.map((item) => ({
+          id: item.id,
+          ...item.data(),
+        }));
+        setReviews(data);
+        setLoading(false);
+        console.log(reviews);
+      } catch (error) {
+        setLoading(false);
+      }
+    })();
+
+  }, [setLoading, setReviews]);
+
+  if (loading || (reviews.length === 0 && reviews)) {
+    return <CircularProgress />;
+  }
+
   console.log(user);
   return (
     <div>
@@ -43,7 +71,7 @@ export default function Profile() {
             padding: "0 20px 0 20px",
           }}
         >
-          <FeaturedReview />
+          <FeaturedReview featuredReview={reviews[0]}/>
         </div>
         <div
           style={{
@@ -63,7 +91,7 @@ export default function Profile() {
             padding: "0 20px 0 20px",
           }}
         >
-          <Reviews />
+          <Reviews reviews={reviews}/>
         </div>
         <div
           style={{
@@ -75,6 +103,7 @@ export default function Profile() {
         >
           <FavMovie />
         </div>
+        
         <div
           style={{
             position: "relative",
@@ -85,16 +114,9 @@ export default function Profile() {
         >
           <UserProfile />
         </div>
+
       </div>
-      <button
-        className="w-full py-3 bg-red-600 mt-4 text-white"
-        onClick={() => {
-          auth.signOut();
-          window.location.href = "/signin";
-        }}
-      >
-        Sign out
-      </button>
+
     </div>
   );
 }
